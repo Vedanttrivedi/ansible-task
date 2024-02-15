@@ -1,0 +1,14 @@
+- name: Install MySQL
+  apt:
+    name: mysql-server
+    state: present
+  notify:
+    - restart mysql service
+    - Copy MySQL config file
+
+- name: Copy MySQL config file
+  copy:
+    src: mysql.conf
+    dest: /etc/mysql/mysql.conf.d/mysql.conf
+  notify: restart mysql service
+
